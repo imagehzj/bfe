@@ -2,12 +2,15 @@ FROM ttbb/base
 
 LABEL maintainer="shoothzj@gmail.com"
 
-ARG version=1.2.0
-ARG download=1.2.0_linux_amd64
+ENV BFE_HOME /opt/sh/bfe
 
-RUN wget https://github.com/bfenetworks/bfe/releases/download/v$version/bfe_$download.tar.gz  && \
+ARG TARGETARCH
+
+ARG version=1.4.0
+
+RUN wget https://github.com/bfenetworks/bfe/releases/download/v$version/bfe_1.4.0_linux_$TARGETARCH.tar.gz  && \
 mkdir -p /opt/sh/bfe && \
-tar -xf bfe_$download.tar.gz -C /opt/sh/bfe --strip-components 1 && \
-rm -rf bfe_$download.tar.gz
+tar -xf bfe_1.4.0_linux_$TARGETARCH.tar.gz -C /opt/sh/bfe --strip-components 1 && \
+rm -rf bfe_1.4.0_linux_$TARGETARCH.tar.gz
 
 WORKDIR /opt/sh/bfe
